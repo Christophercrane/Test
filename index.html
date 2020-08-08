@@ -100,4 +100,104 @@
 <body style="background-color:#FFF6F0;">
     <img src="https://raw.githubusercontent.com/Christophercrane/Polyglot-Bot/master/images/polyglotpage.png" alt="Polyglotbot!" class="center" style="width:850px;height:456px;">
 </body>
+  
+  <head>
+  <style>
+    @keyframes slideInLeft {
+      from {
+        transform: translate3d(100%, 0, 0);
+        visibility: visible;
+      }
+
+      to {
+        transform: translate3d(0, 0, 0);
+      }
+    }
+
+    button.chatLauncher {
+      animation-duration: 0.5s;
+      transition-duration: 0.5s;
+      position: fixed;
+      bottom: 32px;
+      left: 32px;
+      z-index: 9999;
+      border: 12px solid #8E7F76;
+      padding: 0em;
+      border-radius: 26px;
+      margin: 0;
+      text-decoration: none;
+      background-color: #F4F2EE;
+      color: #ffffff;
+      font-family: sans-serif;
+      font-size: 1rem;
+      cursor: pointer;
+      text-align: center;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      width: 120px;
+      height: 150px;
+      opacity: 0;
+    }
+
+    button.chatLauncher.open {
+      animation-name: slideInLeft;
+      opacity: 1;
+    }
+
+    button.chatLauncher:hover,
+    button.chatLauncher:focus {
+      background-color: #F4F2EE;
+      border: 3px solid #50A8FF;
+    }
+
+    button.chatLauncher:focus {
+      outline: 1px solid #0053ba;
+      outline-offset: -0px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- We want to hide this element initially, because Web Chat isn't ready yet. -->
+<button type="button" class="chatLauncher" style="display:none;">
+  <div>
+    <strong style="color: #8E7F76;">POLYGLOT BOT</strong>
+  </div>
+
+  <div id="overlay"><img src="https://raw.githubusercontent.com/Christophercrane/Polyglot-Bot/master/images/polybotlauncher_sm.gif" width="70%" height="70%" align="center" alt="Please wait..." /></div>
+</button>
+
+<script>
+  window.watsonAssistantChatOptions = {
+    integrationID: "20965ca3-20fa-4311-97b6-c9321bff9026",
+    region: "us-south",
+    serviceInstanceID: "f6fd9a31-019b-41f9-a05d-860ac4049427",
+
+    // Config option to hide the default launcher.
+    showLauncher: false,
+    onLoad: function(instance) {
+      // Select the button element from the page.
+      const button = document.querySelector('.chatLauncher');
+
+      // Add the event listener to open your Web Chat.
+      button.addEventListener('click', function clickListener() {
+        instance.openWindow();
+      });
+
+      // Render the Web Chat. Nothing appears on the page, because the launcher is
+      // hidden and the Web Chat window is closed by default.
+      instance.render().then(function() {
+        // Now that Web Chat has been rendered (but is still closed), we make the
+        // custom launcher button visible.
+        button.style.display = 'block';
+        button.classList.add('open');
+      });
+    }
+  };
+
+  setTimeout(function(){const t=document.createElement('script');t.src='https://web-chat.global.assistant.watson.appdomain.cloud/loadWatsonAssistantChat.js';document.head.appendChild(t);});
+</script>
+<body style="background-color:#FFF6F0;">
+    <img src="https://raw.githubusercontent.com/Christophercrane/Polyglot-Bot/master/images/polyglotpage.png" alt="Polyglotbot!" class="center" style="width:850px;height:456px;">
+</body>
 </html>
