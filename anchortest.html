@@ -82,6 +82,13 @@
 
 
 <script>
+  function mouseOver() {
+  document.getElementById("demo").style.color = "red";
+}
+
+function mouseOut() {
+  document.getElementById("demo").style.color = "black";
+}
   window.watsonAssistantChatOptions = {
     integrationID: "15ac47ce-d112-44ab-baaa-28a262604d8a",
     region: "us-south",
@@ -126,6 +133,7 @@
 <div class="main" id="section2">
   <h2>Section 2</h2>
   <a href="#section1">Click Me to Smooth Scroll to Section 1 Above</a>
+  <h1 id="demo" onmouseover="mouseOver()" onmouseout="mouseOut()">Mouse over me</h1>
 </div>
 
 Click <a href="#chapter4">here</a> to read chapter 4. 
